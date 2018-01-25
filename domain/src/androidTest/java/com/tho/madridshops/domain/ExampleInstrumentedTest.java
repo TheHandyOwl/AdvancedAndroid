@@ -1,4 +1,4 @@
-package com.tho.domain;
+package com.tho.madridshops.domain;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.tho.domain.test", appContext.getPackageName());
+        assertEquals("com.tho.madridshops.domain.test", appContext.getPackageName());
     }
 }

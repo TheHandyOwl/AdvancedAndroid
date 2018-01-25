@@ -1,4 +1,4 @@
-package com.tho.domain;
+package com.tho.madridshops.domain;
 
 import org.junit.Test;
 
