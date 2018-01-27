@@ -9,11 +9,35 @@ data class Shop (val id: Int, val name: String, val address: String) {
     init {
         Shops(ArrayList<Shop>())
     }
-
 }
 
 /**
  * Shops: represents several Shops
  */
 
-data class Shops(val shops: List<Shop>)
+class Shops(val shops: List<Shop>): Aggregate {
+    override fun count(): Int {
+        TODO("not implemented")
+    }
+
+    override fun all(): List<Shop> {
+        TODO("not implemented")
+    }
+
+    override fun get(position: Int): Shop {
+        TODO("not implemented")
+    }
+
+    override fun add(element: Shop) {
+        TODO("not implemented")
+    }
+
+    override fun delete(position: Int) {
+        TODO("not implemented")
+    }
+
+    override fun delete(element: Shop) {
+        TODO("not implemented")
+    }
+
+}
