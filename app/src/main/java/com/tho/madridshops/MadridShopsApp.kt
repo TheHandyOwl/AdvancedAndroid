@@ -1,9 +1,9 @@
 package com.tho.madridshops
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import android.util.Log
 
-class MadridShopsApp: Application() {
+class MadridShopsApp: MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
