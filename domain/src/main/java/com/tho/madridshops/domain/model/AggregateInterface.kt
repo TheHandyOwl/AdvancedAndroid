@@ -14,20 +14,20 @@ interface AggregateInterface {
 }
 */
 
-interface ReadAggregate {
+interface ReadAggregate<T> {
     // READ
     fun count(): Int
-    fun all(): List<Shop>
-    fun get(position: Int): Shop
+    fun all(): List<T>
+    fun get(position: Int): T
 }
 
-interface WriteAggregate {
+interface WriteAggregate<T> {
     // WRITE
-    fun add(element: Shop)
+    fun add(element: T)
     fun delete (position: Int)
-    fun delete (element: Shop)
+    fun delete (element: T)
 }
 
-interface Aggregate: ReadAggregate, WriteAggregate
+interface Aggregate<T>: ReadAggregate<T>, WriteAggregate<T>
 
 //interface Marker
