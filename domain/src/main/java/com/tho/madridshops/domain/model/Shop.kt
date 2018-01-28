@@ -15,29 +15,23 @@ data class Shop (val id: Int, val name: String, val address: String) {
  * Shops: represents several Shops
  */
 
-class Shops(val shops: List<Shop>): Aggregate {
-    override fun count(): Int {
-        TODO("not implemented")
-    }
+class Shops(val shops: MutableList<Shop>): Aggregate<Shop> {
+    override fun count(): Int = shops.size
 
-    override fun all(): List<Shop> {
-        TODO("not implemented")
-    }
+    override fun all(): List<Shop> = shops
 
-    override fun get(position: Int): Shop {
-        TODO("not implemented")
-    }
+    override fun get(position: Int): Shop = shops.get(position)
 
     override fun add(element: Shop) {
-        TODO("not implemented")
+        shops.add(element)
     }
 
     override fun delete(position: Int) {
-        TODO("not implemented")
+        shops.removeAt(position)
     }
 
     override fun delete(element: Shop) {
-        TODO("not implemented")
+        shops.remove(element)
     }
 
 }
