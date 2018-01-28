@@ -21,7 +21,7 @@ interface DAOReadOperations<T> {
     // Read DB
     fun query(id: Long): T
     fun query(): List<T>
-    fun queryCursor(): Cursor
+    fun queryCursor(id: Long): Cursor
 }
 
 interface DAOWriteOperations<T> {
