@@ -1,7 +1,12 @@
-package com.tho.madridshops.domain.interactor
+package com.tho.madridshops.domain.interactor.GetAllShopsInteractor
 
+import com.tho.madridshops.domain.interactor.ErrorClosure
+import com.tho.madridshops.domain.interactor.ErrorCompletion
+import com.tho.madridshops.domain.interactor.SuccessClosure
+import com.tho.madridshops.domain.interactor.SuccessCompletion
 import com.tho.madridshops.domain.model.Shop
 import com.tho.madridshops.domain.model.Shops
+
 
 class GetAllShopsInteractorFakeImplementation: GetAllShopsInteractor {
     override fun execute(success: SuccessCompletion<Shops>, error: ErrorCompletion) {
@@ -16,6 +21,20 @@ class GetAllShopsInteractorFakeImplementation: GetAllShopsInteractor {
             success.successCompletion(shops)
         } else {
             error.errorCompletion("Error while accesing the Repository")
+        }
+    }
+
+    fun execute(success: SuccessClosure, error: ErrorClosure) {
+        var allOk = true
+
+        // connect to the repository
+
+        if (allOk) {
+            val shops = createFakeListOfShops()
+
+            success(shops)
+        } else {
+            error("Error while accessing the Repository")
         }
     }
 
