@@ -50,23 +50,47 @@ class ShopDAO(val dbHelper: DBHelper)
     }
 
     override fun query(id: Long): ShopEntity {
-        TODO("not implemented")
+        val cursor = queryCursor(id)
+
+        cursor.moveToFirst()
+
+        return ShopEntity(
+                1,
+                cursor.getLong(cursor.getColumnIndex(DBConstants.KEY_SHOP_ID)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_NAME)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_DESCRIPTION)),
+                cursor.getFloat(cursor.getColumnIndex(DBConstants.KEY_SHOP_LATITUDE)),
+                cursor.getFloat(cursor.getColumnIndex(DBConstants.KEY_SHOP_LONGITUDE)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_IMAGE_URL)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_LOGO_IMAGE_URL)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_OPENING_HOURS)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_ADDRESS))
+        )
     }
 
     override fun query(): List<ShopEntity> {
-        TODO("not implemented")
+        return ArrayList()
     }
 
-    override fun queryCursor(): Cursor {
-        TODO("not implemented")
+    override fun queryCursor(id: Long): Cursor {
+        val cursor = dbReadOnlyConnection.query(
+                DBConstants.TABLE_SHOP,
+                DBConstants.ALL_COLUMNS,
+                DBConstants.KEY_SHOP_ID + " = ?",
+                arrayOf(id.toString()),
+                "",
+                "",
+                DBConstants.KEY_SHOP_ID
+        )
+        return cursor
     }
 
     override fun update(id: Long, element: ShopEntity): Long {
-        TODO("not implemented")
+        return 1
     }
 
     override fun deleteAll(): Boolean {
-        TODO("not implemented")
+        return true
     }
 
 
