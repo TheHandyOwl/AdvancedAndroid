@@ -24,7 +24,8 @@ class ShopDAO(val dbHelper: DBHelper)
     fun contentValues(shopEntity: ShopEntity): ContentValues {
         val content = ContentValues()
 
-        content.put(DBConstants.KEY_SHOP_ID, shopEntity.id)
+        //content.put(DBConstants.KEY_SHOP_DATABASE_ID, shopEntity.id)
+        content.put(DBConstants.KEY_SHOP_ID_JSON, shopEntity.id)
         content.put(DBConstants.KEY_SHOP_NAME, shopEntity.name)
         content.put(DBConstants.KEY_SHOP_DESCRIPTION, shopEntity.description)
         content.put(DBConstants.KEY_SHOP_LATITUDE, shopEntity.latitude)
@@ -38,15 +39,23 @@ class ShopDAO(val dbHelper: DBHelper)
     }
 
     override fun delete(element: ShopEntity): Long {
-        return delete(element.id)
+        if (element.databaseId < 1) {
+            return 0
+        }
+
+        return delete(element.databaseId)
     }
 
     override fun delete(id: Long): Long {
         return dbReadWriteConnection.delete(
                 DBConstants.TABLE_SHOP,
-                DBConstants.KEY_SHOP_ID + " = ?",
+                DBConstants.KEY_SHOP_DATABASE_ID + " = ?",
                 arrayOf(id.toString())
         ).toLong()
+    }
+
+    override fun deleteAll(): Boolean {
+        return true
     }
 
     override fun query(id: Long): ShopEntity {
@@ -56,7 +65,7 @@ class ShopDAO(val dbHelper: DBHelper)
 
         return ShopEntity(
                 1,
-                cursor.getLong(cursor.getColumnIndex(DBConstants.KEY_SHOP_ID)),
+                cursor.getLong(cursor.getColumnIndex(DBConstants.KEY_SHOP_DATABASE_ID)),
                 cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_NAME)),
                 cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_DESCRIPTION)),
                 cursor.getFloat(cursor.getColumnIndex(DBConstants.KEY_SHOP_LATITUDE)),
@@ -76,11 +85,11 @@ class ShopDAO(val dbHelper: DBHelper)
         val cursor = dbReadOnlyConnection.query(
                 DBConstants.TABLE_SHOP,
                 DBConstants.ALL_COLUMNS,
-                DBConstants.KEY_SHOP_ID + " = ?",
+                DBConstants.KEY_SHOP_DATABASE_ID + " = ?",
                 arrayOf(id.toString()),
                 "",
                 "",
-                DBConstants.KEY_SHOP_ID
+                DBConstants.KEY_SHOP_DATABASE_ID
         )
         return cursor
     }
@@ -88,10 +97,5 @@ class ShopDAO(val dbHelper: DBHelper)
     override fun update(id: Long, element: ShopEntity): Long {
         return 1
     }
-
-    override fun deleteAll(): Boolean {
-        return true
-    }
-
 
 }
