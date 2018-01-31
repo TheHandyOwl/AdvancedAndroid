@@ -6,13 +6,23 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.tho.madridshops.repository.ErrorCompletion
+import com.tho.madridshops.repository.SuccessCompletion
 
 class GetJsonManagerVolleyImpl: GetJsonManager {
+
+    // Activity
+        // --> Interactor (strong)
+            // --> Repository (strong)
+                // --> Volley (strong)
+                    // -/-> Activity (weak)
 
     var context: Context? = null
     var requestQueue: RequestQueue? = null
 
-    override fun execute(url: String) {
+    override fun execute(url: String,
+                         success: SuccessCompletion<String>,
+                         error: ErrorCompletion) {
         // get request queue
         // see fun bellow
 
@@ -20,8 +30,9 @@ class GetJsonManagerVolleyImpl: GetJsonManager {
         val request = StringRequest(url,
                 Response.Listener {
                     Log.d("JSON", it)
+                    success.successCompletion(it)
                 }, Response.ErrorListener {
-            it.localizedMessage
+            error.errorCompletion(it.localizedMessage)
         })
 
         // add request to queue
@@ -35,6 +46,5 @@ class GetJsonManagerVolleyImpl: GetJsonManager {
 
         return requestQueue !!
     }
-
 
 }
