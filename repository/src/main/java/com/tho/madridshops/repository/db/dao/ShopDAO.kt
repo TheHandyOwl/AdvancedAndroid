@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.tho.madridshops.repository.db.DBConstants
 import com.tho.madridshops.repository.db.DBHelper
-import com.tho.madridshops.repository.db.model.ShopEntity
+import com.tho.madridshops.repository.model.ShopEntity
 
 class ShopDAO(val dbHelper: DBHelper)
     : DAOPersistable<ShopEntity> {
