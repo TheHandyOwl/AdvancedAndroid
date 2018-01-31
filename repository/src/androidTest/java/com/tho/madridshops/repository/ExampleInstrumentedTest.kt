@@ -4,7 +4,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.tho.madridshops.repository.db.buildDBHelper
 import com.tho.madridshops.repository.db.dao.ShopDAO
-import com.tho.madridshops.repository.db.model.ShopEntity
+import com.tho.madridshops.repository.model.ShopEntity
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,7 +21,7 @@ class ExampleInstrumentedTest {
     @Throws(Exception::class)
     fun given_valid_shopentity_it_gets_inserted_correctly() {
 
-        val shop = ShopEntity(1, 1,"My shop",
+        val shop = ShopEntity(1, 1, "My shop",
                 "", 1.0f, 2.0f,
                 "", "", "", "")
 
