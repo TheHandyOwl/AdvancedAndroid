@@ -45,13 +45,23 @@ class MadridShopsApp: MultiDexApplication() {
 
         val dbHelper = buildDBHelper(this, "mydb.sqlite", 1)
 
-        val shop = ShopEntity(1, 1, "My shop",
-                "", 1.0f, 2.0f,
-                "", "", "", "")
-
         val shopEntityDao = ShopDAO(dbHelper)
 
+        val deleteAll = shopEntityDao.deleteAll()
+
+        val shop = ShopEntity(1, 1, "My shop",
+                "Desc 1", 1.0f, 2.0f,
+                "", "", "", "")
+        val shop2 = ShopEntity(2, 1, "My shop",
+                "Desc 2", 1.0f, 2.0f,
+                "", "", "", "")
+
         val id = shopEntityDao.insert(shop)
+        val id2 = shopEntityDao.insert(shop2)
+
+        shopEntityDao.query().forEach {
+            Log.d("Shop", it.name + " - " + it.description)
+        }
 
     }
 
