@@ -1,4 +1,4 @@
-package com.tho.madridshops.repository.db.model
+package com.tho.madridshops.repository.model
 
 data class ShopEntity (
         val id: Long,

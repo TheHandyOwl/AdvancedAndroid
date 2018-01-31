@@ -24,6 +24,9 @@ android {
 }
 
 dependencies {
+    implementation project(':domain')
+    implementation project(':repository') // Only for test purposes
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -35,5 +38,4 @@ dependencies {
     // enabling multidex support to avoid 64k method
     // (see: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.2'
-    implementation project(':domain')
 }
