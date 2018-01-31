@@ -55,7 +55,10 @@ class ShopDAO(val dbHelper: DBHelper)
     }
 
     override fun deleteAll(): Boolean {
-        return true
+        return dbReadWriteConnection.delete(
+                DBConstants.TABLE_SHOP,
+                null,
+                null).toLong() > 0
     }
 
     override fun query(id: Long): ShopEntity {
@@ -63,8 +66,16 @@ class ShopDAO(val dbHelper: DBHelper)
 
         cursor.moveToFirst()
 
+        return entityFromCursor(cursor)!!
+    }
+
+    fun entityFromCursor(cursor: Cursor): ShopEntity? {
+        if (cursor.isAfterLast || cursor.isBeforeFirst) {
+            return null
+        }
+
         return ShopEntity(
-                1,
+                cursor.getLong(cursor.getColumnIndex(DBConstants.KEY_SHOP_ID_JSON)),
                 cursor.getLong(cursor.getColumnIndex(DBConstants.KEY_SHOP_DATABASE_ID)),
                 cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_NAME)),
                 cursor.getString(cursor.getColumnIndex(DBConstants.KEY_SHOP_DESCRIPTION)),
@@ -78,7 +89,24 @@ class ShopDAO(val dbHelper: DBHelper)
     }
 
     override fun query(): List<ShopEntity> {
-        return ArrayList()
+
+        val queryResult = ArrayList<ShopEntity>()
+
+        val cursor = dbReadOnlyConnection.query(
+                DBConstants.TABLE_SHOP,
+                DBConstants.ALL_COLUMNS,
+                null,
+                null,
+                "",
+                "",
+                DBConstants.KEY_SHOP_DATABASE_ID
+        )
+        while (cursor.moveToNext()) {
+            val se = entityFromCursor(cursor)
+            queryResult.add(se!!)
+        }
+
+        return queryResult
     }
 
     override fun queryCursor(id: Long): Cursor {
@@ -95,7 +123,12 @@ class ShopDAO(val dbHelper: DBHelper)
     }
 
     override fun update(id: Long, element: ShopEntity): Long {
-        return 1
+        val numberOfRecordsUpdated = dbReadWriteConnection.update(
+                DBConstants.TABLE_SHOP,
+                contentValues(element),
+                DBConstants.KEY_SHOP_DATABASE_ID + " = ?",
+                arrayOf(id.toString())).toLong()
+        return numberOfRecordsUpdated
     }
 
 }
