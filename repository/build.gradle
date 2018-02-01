@@ -13,7 +13,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -31,11 +31,17 @@ dependencies {
     // Volley access network library
     implementation 'com.android.volley:volley:1.1.0'
 
+    // Jackson JSON Parsing
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.1"
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // enabling multidex support to avoid 64k method
+    // (see: https://developer.android.com/studio/build/multidex.html)
+    implementation 'com.android.support:multidex:1.0.2'
 }
 repositories {
     mavenCentral()
