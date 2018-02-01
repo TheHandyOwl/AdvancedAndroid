@@ -8,8 +8,10 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.tho.madridshops.repository.ErrorCompletion
 import com.tho.madridshops.repository.SuccessCompletion
+import java.lang.ref.WeakReference
 
-class GetJsonManagerVolleyImpl: GetJsonManager {
+
+class GetJsonManagerVolleyImpl(context: Context): GetJsonManager {
 
     // Activity
         // --> Interactor (strong)
@@ -17,7 +19,7 @@ class GetJsonManagerVolleyImpl: GetJsonManager {
                 // --> Volley (strong)
                     // -/-> Activity (weak)
 
-    var context: Context? = null
+    var weakContext: WeakReference<Context> = WeakReference(context)
     var requestQueue: RequestQueue? = null
 
     override fun execute(url: String,
@@ -41,7 +43,7 @@ class GetJsonManagerVolleyImpl: GetJsonManager {
 
     fun requestQueue(): RequestQueue {
         if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(context)
+            requestQueue = Volley.newRequestQueue(weakContext.get())
         }
 
         return requestQueue !!
