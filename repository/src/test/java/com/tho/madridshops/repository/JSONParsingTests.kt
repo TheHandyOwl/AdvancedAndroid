@@ -1,7 +1,7 @@
 package com.tho.madridshops.repository
 
 import com.tho.madridshops.repository.model.ShopEntity
-import com.tho.madridshops.repository.model.ShopResponseEntity
+import com.tho.madridshops.repository.model.ShopsResponseEntity
 import com.tho.madridshops.repository.network.json.JsonEntitiesParser
 import com.tho.madridshops.repository.util.ReadJsonFile
 import org.junit.Assert
@@ -36,7 +36,7 @@ class JSONParsingTests {
         // parsing
 
         val parser = JsonEntitiesParser()
-        val responseEntity = parser.parse<ShopResponseEntity>(shopsJson)
+        val responseEntity = parser.parse<ShopsResponseEntity>(shopsJson)
 
         assertNotNull(responseEntity)
         assertEquals(6, responseEntity.result.count())
