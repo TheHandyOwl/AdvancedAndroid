@@ -20,6 +20,7 @@ class JSONParsingTests {
 
         val parser = JsonEntitiesParser()
         val shop = parser.parse<ShopEntity>(shopsJson)
+        assertEquals(40.4180563f, shop.latitude, 0.1f)
 
         assertNotNull(shop)
         assertEquals("Cortefiel - Preciados", shop.name)
