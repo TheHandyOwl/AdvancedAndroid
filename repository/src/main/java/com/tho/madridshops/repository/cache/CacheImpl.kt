@@ -1,6 +1,7 @@
 package com.tho.madridshops.repository.cache
 
 import android.content.Context
+import com.tho.madridshops.repository.BuildConfig
 import com.tho.madridshops.repository.db.DBHelper
 import com.tho.madridshops.repository.db.buildDBHelper
 import com.tho.madridshops.repository.db.dao.ShopDAO
@@ -27,7 +28,9 @@ internal class CacheImpl(context: Context): Cache {
     }
 
     private fun cacheDBHelpher(): DBHelper {
-        return buildDBHelper(context.get() !!, "MadridShopsCache.sqlite", 1 )
+        return buildDBHelper(context.get() !!,
+                BuildConfig.MADRID_SHOPS_CACHE_DB_NAME,
+                1 )
     }
 
 }
