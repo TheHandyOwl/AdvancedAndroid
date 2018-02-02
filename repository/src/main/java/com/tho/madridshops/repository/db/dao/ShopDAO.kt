@@ -7,7 +7,7 @@ import com.tho.madridshops.repository.db.DBConstants
 import com.tho.madridshops.repository.db.DBHelper
 import com.tho.madridshops.repository.model.ShopEntity
 
-class ShopDAO(val dbHelper: DBHelper)
+internal class ShopDAO(val dbHelper: DBHelper)
     : DAOPersistable<ShopEntity> {
 
     private val dbReadOnlyConnection: SQLiteDatabase = dbHelper.readableDatabase
@@ -58,7 +58,7 @@ class ShopDAO(val dbHelper: DBHelper)
         return dbReadWriteConnection.delete(
                 DBConstants.TABLE_SHOP,
                 null,
-                null).toLong() > 0
+                null).toLong() >= 0
     }
 
     override fun query(id: Long): ShopEntity {

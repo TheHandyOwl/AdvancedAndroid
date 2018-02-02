@@ -15,7 +15,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
+        }
         release {
+            buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

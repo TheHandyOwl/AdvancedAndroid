@@ -11,7 +11,7 @@ import com.tho.madridshops.repository.SuccessCompletion
 import java.lang.ref.WeakReference
 
 
-class GetJsonManagerVolleyImpl(context: Context): GetJsonManager {
+internal class GetJsonManagerVolleyImpl(context: Context): GetJsonManager {
 
     // Activity
         // --> Interactor (strong)
