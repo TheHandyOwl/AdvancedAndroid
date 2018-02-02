@@ -58,7 +58,7 @@ class ShopDAO(val dbHelper: DBHelper)
         return dbReadWriteConnection.delete(
                 DBConstants.TABLE_SHOP,
                 null,
-                null).toLong() > 0
+                null).toLong() >= 0
     }
 
     override fun query(id: Long): ShopEntity {
