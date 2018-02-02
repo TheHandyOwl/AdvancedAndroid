@@ -16,7 +16,7 @@ import org.junit.Assert.*
 class ShopDAOTests {
     // Context of the app under test.
     val appContext = InstrumentationRegistry.getTargetContext()
-    val dbHelper = buildDBHelper(appContext, "mydb.sqlite", 1)
+    internal val dbHelper = buildDBHelper(appContext, "mydb.sqlite", 1)
 
     @Test
     @Throws(Exception::class)
@@ -37,8 +37,6 @@ class ShopDAOTests {
     @Test
     @Throws(Exception::class)
     fun to_do_test_moved_delete_all_and_insert() {
-
-        val dbHelper = buildDBHelper(appContext, "mydb.sqlite", 1)
 
         val shopEntityDao = ShopDAO(dbHelper)
 
