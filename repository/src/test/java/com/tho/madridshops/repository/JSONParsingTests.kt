@@ -1,11 +1,11 @@
 package com.tho.madridshops.repository
 
 import com.tho.madridshops.repository.model.ShopEntity
+import com.tho.madridshops.repository.model.ShopsResponseEntity
 import com.tho.madridshops.repository.network.json.JsonEntitiesParser
 import com.tho.madridshops.repository.util.ReadJsonFile
 import org.junit.Assert
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.*
 import org.junit.Test
 
 
@@ -26,4 +26,23 @@ class JSONParsingTests {
         assertEquals("Cortefiel - Preciados", shop.name)
 
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun given_valid_string_containing_json_it_parses_correctly_all_shops() {
+        val shopsJson = ReadJsonFile().loadJSONFromAsset("shops.json")
+        assertTrue(false == shopsJson.isEmpty())
+
+        // parsing
+
+        val parser = JsonEntitiesParser()
+        val responseEntity = parser.parse<ShopsResponseEntity>(shopsJson)
+
+        assertNotNull(responseEntity)
+        assertEquals(6, responseEntity.result.count())
+        assertEquals("Cortefiel - Preciados", responseEntity.result[0].name)
+        assertEquals(40.4180563f, responseEntity.result[0].latitude, 0.1f)
+
+    }
+
 }

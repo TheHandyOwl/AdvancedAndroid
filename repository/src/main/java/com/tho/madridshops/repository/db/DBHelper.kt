@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 
-fun buildDBHelper(context: Context, name: String, version: Int): DBHelper {
+internal fun buildDBHelper(context: Context, name: String, version: Int): DBHelper {
     return DBHelper(context, name, null, version)
 }
 
-class DBHelper(context: Context?,
+internal class DBHelper(context: Context?,
                name: String?,
                factory: SQLiteDatabase.CursorFactory?,
                version: Int)
