@@ -16,7 +16,12 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://dev.myserver.com\""
+        }
         release {
+            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://prod.myserver.com\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
