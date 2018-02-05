@@ -30,6 +30,8 @@ class MadridShopsApp: MultiDexApplication() {
                 success = object: SuccessCompletion<Shops> {
                     override fun successCompletion(shops: Shops) {
                         Log.d("Shops", "Count: " + shops.count())
+
+                        shops.shops.forEach { Log.d("Shop", it.name) }
                     }
                 },
                 error = object: ErrorCompletion {
