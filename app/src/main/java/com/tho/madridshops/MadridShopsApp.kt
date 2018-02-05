@@ -30,6 +30,8 @@ class MadridShopsApp: MultiDexApplication() {
                 success = object: SuccessCompletion<Shops> {
                     override fun successCompletion(shops: Shops) {
                         Log.d("Shops", "Count: " + shops.count())
+
+                        shops.shops.forEach { Log.d("Shop", it.name) }
                     }
                 },
                 error = object: ErrorCompletion {
@@ -38,11 +40,13 @@ class MadridShopsApp: MultiDexApplication() {
                     }
         })
 
+        /*
         DeleteAllShopsImpl(this).execute(success = {
             Log.d("success", "success deleting")
         }, error = {
             Log.d("error", "error deleting: " + it)
         })
+        */
 
     }
 
