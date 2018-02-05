@@ -30,7 +30,7 @@ class JSONParsingTests {
 
     @Test
     @Throws(Exception::class)
-    fun given_invalid_string_containing_json_with_Wrong_latitude_it_parses_correctly() {
+    fun given_invalid_string_containing_json_with_wrong_latitude_it_parses_correctly() {
         val shopsJson = ReadJsonFile().loadJSONFromAsset("shopWrongLatitude.json")
         assertTrue(false == shopsJson.isEmpty())
 

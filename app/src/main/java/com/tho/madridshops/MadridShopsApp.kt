@@ -38,11 +38,13 @@ class MadridShopsApp: MultiDexApplication() {
                     }
         })
 
+        /*
         DeleteAllShopsImpl(this).execute(success = {
             Log.d("success", "success deleting")
         }, error = {
             Log.d("error", "error deleting: " + it)
         })
+        */
 
     }
 

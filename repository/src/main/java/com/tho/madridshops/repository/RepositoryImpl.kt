@@ -21,13 +21,12 @@ class RepositoryImpl(context: Context): Repository {
         cache.getAllShops(
                 success = {
                     // if there's shops in cache --> return item
-
                     success(it)
                 }, error = {
-            // if no shops in cache --> network
-
-            populateCache(success, error)
-        })
+                    // if no shops in cache --> network
+                    populateCache(success, error)
+                }
+        )
     }
 
     private fun populateCache(success: (shops: List<ShopEntity>) -> Unit,
@@ -47,6 +46,7 @@ class RepositoryImpl(context: Context): Repository {
                             responseEntity = parser.parse<ShopsResponseEntity>(e)
                         } catch (e: InvalidFormatException) {
                             responseEntity = ShopsResponseEntity(ArrayList())
+                            return
                         }
 
                         // store result in cache
