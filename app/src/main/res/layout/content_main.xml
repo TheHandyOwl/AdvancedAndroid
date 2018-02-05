@@ -10,14 +10,16 @@
     tools:showIn="@layout/activity_main"
     android:orientation="vertical">
 
-    <View
+    <fragment
+        android:name="com.tho.madridshops.fragment.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         android:layout_weight="1"
         />
 
-    <View
+    <fragment
+        android:name="com.tho.madridshops.fragment.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"

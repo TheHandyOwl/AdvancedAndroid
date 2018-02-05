@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.tho.madridshops.R
+import com.tho.madridshops.domain.model.Shops
 
 
 /**
@@ -15,6 +16,9 @@ import com.tho.madridshops.R
  */
 class MapFragment : Fragment() {
 
+    fun setShops(shops: Shops) {
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
