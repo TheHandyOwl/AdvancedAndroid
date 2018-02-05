@@ -1,4 +1,4 @@
-package com.tho.madridshops
+package com.tho.madridshops.activity
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.tho.madridshops.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,10 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("App", "MainActivity.onCreate()")
 
+        // val fm: FragmentManager = supportFragmentManager.getFragment()
+
+        /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+        */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
