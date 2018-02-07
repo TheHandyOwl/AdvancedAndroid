@@ -11,6 +11,7 @@
     android:orientation="vertical">
 
     <fragment
+        android:id="@+id/activity_main_map_fragment"
         android:name="com.tho.madridshops.fragment.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +20,7 @@
         />
 
     <fragment
+        android:id="@+id/activity_main_list_fragment"
         android:name="com.tho.madridshops.fragment.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
