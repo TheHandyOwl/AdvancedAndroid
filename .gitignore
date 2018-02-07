@@ -11,6 +11,9 @@
 /captures
 .externalNativeBuild
 
+### Google Maps API Key ###
+google_maps_api_key.xml
+
 
 # Created by https://www.gitignore.io/api/android,androidstudio
 
