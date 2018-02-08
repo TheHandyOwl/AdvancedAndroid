@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.tho.madridshops.R
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         getAllShopsInteractor.execute(object: SuccessCompletion<Shops> {
             override fun successCompletion(shops: Shops) {
                 //mapFragmentInmutable?.setShops(shops)
-                initializeMap()
+                initializeMap(shops)
             }
         }, object: ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
@@ -65,14 +66,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun initializeMap() {
+    private fun initializeMap(shops: Shops) {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.activity_main_map_fragment) as SupportMapFragment
-        mapFragment.getMapAsync({
+        mapFragment.getMapAsync({ mapa ->
             Log.d("SUCCESS", "HABEMUS MAPA")
-            centerMapInPosotion( it, 40.416775, -3.703790)
-            it.uiSettings.isRotateGesturesEnabled = false
-            it.uiSettings.isZoomControlsEnabled = true
-            showUserPosition(baseContext, it)
+            centerMapInPosotion( mapa, 40.416775, -3.703790)
+            mapa.uiSettings.isRotateGesturesEnabled = false
+            mapa.uiSettings.isZoomControlsEnabled = true
+            showUserPosition(baseContext, mapa)
+            map = mapa
+            addAllPins(shops)
         })
     }
 
@@ -100,6 +103,33 @@ class MainActivity : AppCompatActivity() {
 
         map.isMyLocationEnabled = true
 
+    }
+
+    private var map: GoogleMap? = null
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 10) {
+            try {
+                Log.d("Shops", "Pasa por aquí!")
+                map?.isMyLocationEnabled = true
+            } catch (e: SecurityException) {
+                Log.d("Shops", "No pasa por aquí!")
+            }
+        }
+    }
+
+    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, title: String) {
+        map.addMarker(MarkerOptions()
+                .position(LatLng(latitude, longitude))
+                .title(title))
+    }
+
+    fun addAllPins(shops: Shops) {
+        for (i in 0 until shops.count()) {
+            val shop = shops.get(i)
+            addPin(this.map !!, 40.416775, -3.703790, shop.name)
+        }
     }
 
     private fun setupList() {
