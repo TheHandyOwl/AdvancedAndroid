@@ -70,6 +70,8 @@ class MainActivity : AppCompatActivity() {
         mapFragment.getMapAsync({
             Log.d("SUCCESS", "HABEMUS MAPA")
             centerMapInPosotion( it, 40.416775, -3.703790)
+            it.uiSettings.isRotateGesturesEnabled = false
+            it.uiSettings.isZoomControlsEnabled = true
             showUserPosition(baseContext, it)
         })
     }
