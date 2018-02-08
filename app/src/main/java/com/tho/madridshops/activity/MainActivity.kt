@@ -1,6 +1,11 @@
 package com.tho.madridshops.activity
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -65,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         mapFragment.getMapAsync({
             Log.d("SUCCESS", "HABEMUS MAPA")
             centerMapInPosotion( it, 40.416775, -3.703790)
+            showUserPosition(baseContext, it)
         })
     }
 
@@ -76,6 +82,22 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+    }
+
+    fun showUserPosition(context: Context, map: GoogleMap) {
+        if (ActivityCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION), 10)
+
+            return
+        }
+
+        map.isMyLocationEnabled = true
+
     }
 
     private fun setupList() {
