@@ -6,7 +6,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.tho.madridshops.R
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
@@ -60,7 +64,18 @@ class MainActivity : AppCompatActivity() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.activity_main_map_fragment) as SupportMapFragment
         mapFragment.getMapAsync({
             Log.d("SUCCESS", "HABEMUS MAPA")
+            centerMapInPosotion( it, 40.416775, -3.703790)
         })
+    }
+
+    fun centerMapInPosotion(map: GoogleMap, latitude: Double, longitude: Double) {
+        val coordinate = LatLng(latitude, longitude)
+        val cameraPosition = CameraPosition.Builder()
+                .target(coordinate)
+                .zoom(13f)
+                .build()
+
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
     }
 
     private fun setupList() {
