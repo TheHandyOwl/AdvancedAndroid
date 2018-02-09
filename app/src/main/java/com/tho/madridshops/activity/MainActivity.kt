@@ -25,6 +25,7 @@ import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractor
 import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImpl
 import com.tho.madridshops.domain.model.Shops
 import com.tho.madridshops.fragment.ListFragment
+import com.tho.madridshops.router.Router
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -148,12 +149,17 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Router().navigateFromMainActivityToPicassoActivity(this)
+        return true
+
+        /*
         startActivity(Intent(this, PicassoActivity::class.java))
 
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+        */
 
     }
 }
