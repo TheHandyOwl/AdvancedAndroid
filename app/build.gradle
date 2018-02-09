@@ -43,4 +43,10 @@ dependencies {
     // enabling multidex support to avoid 64k method
     // (see: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.2'
+
+    // Google Maps
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

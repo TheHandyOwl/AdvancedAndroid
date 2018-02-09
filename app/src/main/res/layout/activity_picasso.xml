@@ -5,26 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.tho.madridshops.activity.MainActivity"
-    tools:showIn="@layout/activity_main"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.tho.madridshops.activity.PicassoActivity">
 
-    <fragment
-        android:id="@+id/activity_main_map_fragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <ImageView
+        android:id="@+id/img1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
         android:layout_weight="1"
         />
 
-    <fragment
-        android:id="@+id/activity_main_list_fragment"
-        android:name="com.tho.madridshops.fragment.ListFragment"
+    <ImageView
+        android:id="@+id/img2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:layout_weight="1"
+        />
+
+    <ImageView
+        android:id="@+id/img3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         />
 
