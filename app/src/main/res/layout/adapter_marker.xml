@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/marker_small_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tho.madridshops.adapter.MarkerAdapter">
+
+    <ImageView
+        android:id="@+id/marker_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/marker_image_padding"
+        android:layout_marginEnd="@dimen/marker_image_padding"
+        android:layout_marginStart="@dimen/marker_image_padding"
+        android:layout_marginTop="@dimen/marker_image_padding"
+        android:contentDescription="@string/shop_s_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <TextView
+        android:id="@+id/marker_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/marker_text_margin"
+        android:layout_marginStart="@dimen/marker_text_margin"
+        android:layout_toEndOf="@id/marker_image"
+        android:textSize="@dimen/marker_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/marker_image"
+        tools:text="@string/shop_s_name" />
+
+    <TextView
+        android:id="@+id/marker_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/marker_name"
+        android:layout_marginTop="@dimen/marker_text_margin"
+        android:layout_toEndOf="@id/marker_image"
+        android:textSize="@dimen/marker_text_size"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/marker_image"
+        app:layout_constraintEnd_toEndOf="@+id/marker_name"
+        app:layout_constraintStart_toStartOf="@+id/marker_name"
+        app:layout_constraintTop_toBottomOf="@+id/marker_name"
+        tools:text="@string/shops_s_address" />
+
+</android.support.constraint.ConstraintLayout>
