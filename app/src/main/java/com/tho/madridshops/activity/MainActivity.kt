@@ -29,8 +29,9 @@ import com.tho.madridshops.fragment.ListFragment
 import com.tho.madridshops.router.Router
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListFragment.OnShowShopDetail {
 
     var listFragment: ListFragment? = null
 
@@ -51,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         */
 
         setupMap()
-        setupList()
 
     }
 
@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             override fun successCompletion(shops: Shops) {
                 //mapFragmentInmutable?.setShops(shops)
                 initializeMap(shops)
+                initializeList(shops)
             }
         }, object: ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
@@ -170,5 +171,14 @@ class MainActivity : AppCompatActivity() {
         }
         */
 
+    }
+
+    private fun initializeList(shops: Shops) {
+        listFragment = activity_main_list_fragment as ListFragment
+        listFragment?.setShops(shops)
+    }
+
+    override fun showShopDetail(shop: Shop) {
+        Router().navigateFromMapViewToDetailView(this, this, shop)
     }
 }
