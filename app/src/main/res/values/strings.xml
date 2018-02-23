@@ -8,5 +8,8 @@
     <string name="shop_description">Shop\'s description</string>
     <string name="shop_openning_hours">Shop\'s openning hours</string>
     <string name="shop_image_description">Shop\'s image description</string>
+    <string name="shop_s_logo">Shop\'s logo</string>
+    <string name="shop_s_name">Shop\'s name</string>
+    <string name="shops_s_address">Shop\'s address</string>
 
 </resources>
