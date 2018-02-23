@@ -49,7 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PicassoActivity"></activity>
+        <activity android:name=".activity.PicassoActivity" />
+        <activity android:name=".activity.DetailActivity">
+        </activity>
     </application>
 
 </manifest>

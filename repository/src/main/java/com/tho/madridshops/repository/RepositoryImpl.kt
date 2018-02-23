@@ -16,7 +16,8 @@ class RepositoryImpl(context: Context): Repository {
     private val weakContext = WeakReference<Context>(context)
     private val cache: Cache = CacheImpl(weakContext.get() !!)
 
-    override fun getAllShops(success: (shops: List<ShopEntity>) -> Unit, error: (errorMessage: String) -> Unit) {
+    override fun getAllShops(success: (shops: List<ShopEntity>) -> Unit,
+                             error: (errorMessage: String) -> Unit) {
         // read all Shops from cache
         cache.getAllShops(
                 success = {
@@ -26,6 +27,19 @@ class RepositoryImpl(context: Context): Repository {
                     // if no shops in cache --> network
                     populateCache(success, error)
                 }
+        )
+    }
+
+    override fun getShop(shopId: Long, success: (shop: ShopEntity) -> Unit, error: (errorMessage: String) -> Unit) {
+        // read a Shop from cache
+        cache.getShop(shopId,
+                success = {
+                    // if there's shop in cache --> return item
+                    success(it)
+                }, error = {
+            // if no shop in cache --> error
+            error(it.toString())
+        }
         )
     }
 
@@ -51,7 +65,16 @@ class RepositoryImpl(context: Context): Repository {
 
                         // store result in cache
                         cache.saveAllShops(responseEntity.result, success = {
-                            success(responseEntity.result)
+
+                            // shops saved. Read all Shops from cache
+                            cache.getAllShops(
+                                    success = { shopsEntity ->
+                                        success(shopsEntity)
+                                    }, error = { error ->
+                                        error(error)
+                                    }
+                            )
+
                         }, error = {
                             error("Something happend on the way to heaven!")
                         })

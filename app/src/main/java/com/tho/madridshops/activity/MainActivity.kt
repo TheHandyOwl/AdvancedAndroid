@@ -3,7 +3,6 @@ package com.tho.madridshops.activity
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -19,10 +18,12 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.tho.madridshops.R
+import com.tho.madridshops.adapter.MarkerAdapter
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
 import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractor
 import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImpl
+import com.tho.madridshops.domain.model.Shop
 import com.tho.madridshops.domain.model.Shops
 import com.tho.madridshops.fragment.ListFragment
 import com.tho.madridshops.router.Router
@@ -76,6 +77,8 @@ class MainActivity : AppCompatActivity() {
             mapa.uiSettings.isRotateGesturesEnabled = false
             mapa.uiSettings.isZoomControlsEnabled = true
             showUserPosition(baseContext, mapa)
+
+            mapa.setInfoWindowAdapter(MarkerAdapter(this))
             map = mapa
             addAllPins(shops)
         })
@@ -121,16 +124,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addPin(map: GoogleMap, latitude: Double, longitude: Double, title: String) {
+    fun addPin(map: GoogleMap, shop: Shop) {
         map.addMarker(MarkerOptions()
-                .position(LatLng(latitude, longitude))
-                .title(title))
+                .position(LatLng(shop.latitude.toDouble(), shop.longitude.toDouble()))
+                .title(shop.name)
+                .snippet(shop.address)
+        ).tag = shop
     }
 
     fun addAllPins(shops: Shops) {
         for (i in 0 until shops.count()) {
             val shop = shops.get(i)
-            addPin(this.map !!, 40.416775, -3.703790, shop.name)
+            addPin(this.map !!, shop)
+
+            map?.setOnInfoWindowClickListener {
+                Router().navigateFromMapViewToDetailView(this, this, it.tag as Shop)
+            }
         }
     }
 
