@@ -137,6 +137,10 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until shops.count()) {
             val shop = shops.get(i)
             addPin(this.map !!, shop)
+
+            map?.setOnInfoWindowClickListener {
+                Router().navigateFromMapViewToDetailView(this, this, shop.id)
+            }
         }
     }
 
