@@ -11,5 +11,6 @@
     <string name="shop_s_logo">Shop\'s logo</string>
     <string name="shop_s_name">Shop\'s name</string>
     <string name="shops_s_address">Shop\'s address</string>
-
+    <string name="shop_image_map">Shop\'s image map</string>
+    <string name="show_hide_map">Show / hide map</string>
 </resources>

@@ -4,7 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintSet
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 import android.util.Log
+import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.Toast
 import com.squareup.picasso.Picasso
 import com.tho.madridshops.R
@@ -32,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private val shop: Shop by lazy { intent.getParcelableExtra(EXTRA_SHOP) as Shop }
+    private var show: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,12 @@ class DetailActivity : AppCompatActivity() {
         Log.d("SHOPID:", shop.name)
 
         setupShopDetail(shop)
+
+        // Show / hide map
+        detail_view_tap.setOnClickListener {
+            showOrHideComponents()
+        }
+
     }
 
     private fun setupShopDetail(shop: Shop) {
@@ -80,6 +91,32 @@ class DetailActivity : AppCompatActivity() {
                 .load(shop.image_url)
                 .placeholder(android.R.drawable.stat_sys_download)
                 .into(detail_view_image)
+        // Hidden map
+        val url = "https://maps.googleapis.com/maps/api/staticmap?center=4${shop.latitude},${shop.longitude}&zoom=17&size=320x220&scale=2&markers=%7Ccolor:0x9C7B14%7C${shop.latitude},${shop.longitude}"
+        Picasso.with(this)
+                .load(url)
+                .placeholder(android.R.drawable.stat_sys_download)
+                .into(detail_view_map)
+    }
+
+    // Show / hide map
+
+    private fun showOrHideComponents(){
+        if (show) show = false else show = true
+
+        val constraintSet = ConstraintSet()
+        if (show) {
+            constraintSet.clone(this, R.layout.activity_detail_with_map)
+        } else {
+            constraintSet.clone(this, R.layout.activity_detail)
+        }
+
+        val transition = ChangeBounds()
+        transition.interpolator = AnticipateOvershootInterpolator(1.0f)
+        transition.duration = 1200
+
+        TransitionManager.beginDelayedTransition(constraint, transition)
+        constraintSet.applyTo(constraint)
     }
 
 }

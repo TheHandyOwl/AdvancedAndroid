@@ -5,16 +5,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion compileSdkVersion_version
+
     defaultConfig {
         applicationId "com.tho.madridshops"
-        minSdkVersion 17
-        targetSdkVersion 26
+        minSdkVersion minSdkVersion_version
+        targetSdkVersion targetSdkVersion_version
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+
     buildTypes {
         debug {
             buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://dev.myserver.com\""
@@ -26,6 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
