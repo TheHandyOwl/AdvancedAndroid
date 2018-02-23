@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tho.madridshops.activity.DetailActivity">
@@ -22,7 +21,6 @@
         android:textSize="@dimen/detail_view_text_size"
         app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/shop_description" />
@@ -32,13 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.07" />
 
     <EditText
         android:id="@+id/detail_view_opening_hours"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/detail_view_small_margin"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border"
         android:gravity="top"
         android:inputType="textMultiLine"
@@ -46,36 +44,55 @@
         android:textSize="@dimen/detail_view_text_size"
         app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline2"
         app:layout_constraintEnd_toEndOf="@+id/detail_view_description"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/detail_view_description"
         app:layout_constraintTop_toTopOf="@+id/detail_view_guideline1"
-        tools:text="@string/shop_openning_hours"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor"
+        tools:text="@string/shop_openning_hours" />
 
     <android.support.constraint.Guideline
         android:id="@+id/detail_view_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <ImageView
         android:id="@+id/detail_view_image"
-        android:labelFor="@+id/detail_view_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/detail_view_small_margin"
+        android:layout_marginTop="8dp"
         android:background="#DADADA"
         android:contentDescription="@string/shop_image_description"
+        android:labelFor="@+id/detail_view_description"
         app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline3"
         app:layout_constraintEnd_toEndOf="@+id/detail_view_opening_hours"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/detail_view_opening_hours"
-        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline2"
+        app:layout_constraintTop_toTopOf="@+id/detail_view_guideline2"
         app:srcCompat="@android:drawable/stat_sys_download" />
 
     <android.support.constraint.Guideline
         android:id="@+id/detail_view_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <ImageView
+        android:id="@+id/detail_view_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/shop_image_map"
+        android:labelFor="@+id/detail_view_description"
+        app:layout_constraintBottom_toTopOf="@id/detail_view_guideline4"
+        app:layout_constraintEnd_toEndOf="@+id/detail_view_image"
+        app:layout_constraintStart_toStartOf="@+id/detail_view_image"
+        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline3"
+        app:srcCompat="@android:drawable/stat_sys_download" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/detail_view_guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -86,8 +103,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:foreground="@drawable/gradient_variant"
-        app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline3" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detail_view_guideline3" />
 
     <TextView
         android:id="@+id/detail_view_tap"
@@ -95,6 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        android:background="#0000FF"
         android:text="@string/show_hide_map"
         android:textAlignment="center"
         android:textColor="#ffffff"
@@ -102,28 +120,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline3" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/detail_view_guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1" />
-
-    <ImageView
-        android:id="@+id/detail_view_map"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/shop_image_map"
-        android:labelFor="@+id/detail_view_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline4"
-        app:srcCompat="@android:drawable/stat_sys_download" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline4" />
 
 </android.support.constraint.ConstraintLayout>
