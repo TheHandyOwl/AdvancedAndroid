@@ -5,12 +5,14 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import com.tho.madridshops.R
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
 import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractor
 import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorFakeImpl
+import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorImpl
 import com.tho.madridshops.domain.model.Shop
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -20,42 +22,45 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
 
-        val EXTRA_SHOP_ID = "EXTRA_SHOP_ID"
+        val EXTRA_SHOP = "EXTRA_SHOP"
 
-        fun intent(context: Context, shopId: Int): Intent {
+        fun intent(context: Context, shop: Shop): Intent {
             val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(EXTRA_SHOP_ID, shopId)
+            intent.putExtra(EXTRA_SHOP, shop)
             return intent
         }
     }
 
-    private val shopId: Int by lazy { intent.getIntExtra(EXTRA_SHOP_ID, 1) }
+    private val shop: Shop by lazy { intent.getParcelableExtra(EXTRA_SHOP) as Shop }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        setupShopDetail(shopId)
+        Log.d("SHOPID:", shop.name)
+
+        setupShopDetail(shop)
     }
 
-    private fun setupShopDetail(shopId: Int) {
+    private fun setupShopDetail(shop: Shop) {
 
-        val getShopDetailInteractor: GetShopDetailInteractor = GetShopDetailInteractorFakeImpl()
-        getShopDetailInteractor.execute(
-                success = object: SuccessCompletion<Shop> {
+        // Check shop on DB
+        //val getShopDetailInteractor: GetShopDetailInteractor = GetShopDetailInteractorFakeImpl()
+        val getShopDetailInteractor: GetShopDetailInteractor = GetShopDetailInteractorImpl(this)
+        getShopDetailInteractor.execute(shop.id.toLong(),
+                object: SuccessCompletion<Shop> {
                     override fun successCompletion(shop: Shop) {
-                        Log.d("SHOP DETAIL", "" + shop.name)
                         initializeShopDetail(shop)
                     }
-
-                },
-                error = object: ErrorCompletion {
-                    override fun errorCompletion(errorMessage: String) {
-                        Log.d("SHOP DETAIL", "NOT IMPLEMENTED")
-                    }
-
-                }
+                }, object: ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(baseContext, "Error updating from DB", Toast.LENGTH_LONG).show()
+            }
+        }
         )
+
+        // Meanwhile use the parameter
+        initializeShopDetail(shop)
 
     }
 

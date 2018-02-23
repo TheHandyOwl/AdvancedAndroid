@@ -3,7 +3,6 @@ package com.tho.madridshops.activity
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -137,6 +136,10 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until shops.count()) {
             val shop = shops.get(i)
             addPin(this.map !!, shop)
+
+            map?.setOnInfoWindowClickListener {
+                Router().navigateFromMapViewToDetailView(this, this, it.tag as Shop)
+            }
         }
     }
 

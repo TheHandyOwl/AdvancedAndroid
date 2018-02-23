@@ -27,6 +27,20 @@ internal class CacheImpl(context: Context): Cache {
         }).run()
     }
 
+    override fun getShop(shopId: Long, success: (shop: ShopEntity) -> Unit,
+                         error: (errorMessage: String) -> Unit) {
+        Thread(Runnable {
+            var shop = ShopDAO(cacheDBHelpher()).query(shopId)
+            DispatchOnMainThread(Runnable {
+                if (shop != null) {
+                    success(shop)
+                } else {
+                    error("No shop")
+                }
+            })
+        }).run()
+    }
+
     override fun saveAllShops(shops: List<ShopEntity>, success: () -> Unit, error: (errorMessage: String) -> Unit) {
         Thread(Runnable {
             try {
