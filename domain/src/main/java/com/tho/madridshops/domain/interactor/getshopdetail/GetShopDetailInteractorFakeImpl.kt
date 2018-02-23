@@ -5,7 +5,7 @@ import com.tho.madridshops.domain.interactor.SuccessCompletion
 import com.tho.madridshops.domain.model.Shop
 
 class GetShopDetailInteractorFakeImpl : GetShopDetailInteractor {
-    override fun execute(success: SuccessCompletion<Shop>, error: ErrorCompletion) {
+    override fun execute(shopId: Long, success: SuccessCompletion<Shop>, error: ErrorCompletion) {
         //var allOk = false
         var allOk = true
 

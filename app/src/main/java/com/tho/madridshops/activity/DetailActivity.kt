@@ -5,8 +5,14 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import com.tho.madridshops.R
+import com.tho.madridshops.domain.interactor.ErrorCompletion
+import com.tho.madridshops.domain.interactor.SuccessCompletion
+import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractor
+import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorFakeImpl
+import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorImpl
 import com.tho.madridshops.domain.model.Shop
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -37,8 +43,23 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupShopDetail(shop: Shop) {
-        // Request to DB
-        // Or just by parameter
+
+        // Check shop on DB
+        //val getShopDetailInteractor: GetShopDetailInteractor = GetShopDetailInteractorFakeImpl()
+        val getShopDetailInteractor: GetShopDetailInteractor = GetShopDetailInteractorImpl(this)
+        getShopDetailInteractor.execute(shop.id.toLong(),
+                object: SuccessCompletion<Shop> {
+                    override fun successCompletion(shop: Shop) {
+                        initializeShopDetail(shop)
+                    }
+                }, object: ErrorCompletion {
+            override fun errorCompletion(errorMessage: String) {
+                Toast.makeText(baseContext, "Error updating from DB", Toast.LENGTH_LONG).show()
+            }
+        }
+        )
+
+        // Meanwhile use the parameter
         initializeShopDetail(shop)
 
     }
