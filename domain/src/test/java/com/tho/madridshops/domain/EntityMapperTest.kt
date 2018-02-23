@@ -29,7 +29,7 @@ class EntityMapperTests {
         // mapping
 
         val shop = Shop(
-                shopEntity.id.toInt(),
+                shopEntity.databaseId.toInt(),
                 shopEntity.name,
                 shopEntity.img,
                 shopEntity.logo,
@@ -71,7 +71,7 @@ class EntityMapperTests {
 
         // mapping
         val shop = Shop(
-                shopEntity.id.toInt(),
+                shopEntity.databaseId.toInt(),
                 shopEntity.name,
                 shopEntity.img,
                 shopEntity.logo,
