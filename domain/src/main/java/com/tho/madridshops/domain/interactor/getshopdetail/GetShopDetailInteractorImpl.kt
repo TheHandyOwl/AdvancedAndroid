@@ -30,7 +30,7 @@ class GetShopDetailInteractorImpl(context: Context) : GetShopDetailInteractor {
 
     private fun entityMapper(shopEntity: ShopEntity): Shop {
         val shop = Shop(
-                shopEntity.id.toInt(),
+                shopEntity.databaseId.toInt(),
                 shopEntity.name,
                 shopEntity.img,
                 shopEntity.logo,
