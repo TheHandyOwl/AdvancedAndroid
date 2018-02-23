@@ -7,4 +7,68 @@
     android:layout_height="match_parent"
     tools:context="com.tho.madridshops.activity.DetailActivity">
 
+    <EditText
+        android:id="@+id/detail_view_description"
+        android:background="@drawable/border"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/detail_small_margin"
+        android:layout_marginEnd="@dimen/detail_small_margin"
+        android:layout_marginStart="@dimen/detail_small_margin"
+        android:layout_marginTop="@dimen/detail_small_margin"
+        android:scrollbars="vertical"
+        android:textSize="@dimen/detail_view_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/shop_description" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/detail_view_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <EditText
+        android:id="@+id/detail_view_opening_hours"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:textSize="@dimen/detail_view_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/detail_view_guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/detail_view_description"
+        app:layout_constraintStart_toStartOf="@+id/detail_view_description"
+        app:layout_constraintTop_toTopOf="@+id/detail_view_guideline1"
+        tools:text="@string/shop_openning_hours"
+        tools:ignore="LabelFor" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/detail_view_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <ImageView
+        android:id="@+id/detail_view_image"
+        android:labelFor="@+id/detail_view_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/detail_small_margin"
+        android:background="#DADADA"
+        android:contentDescription="@string/shop_image_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/detail_view_opening_hours"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/detail_view_opening_hours"
+        app:layout_constraintTop_toTopOf="@+id/detail_view_guideline2"
+        app:srcCompat="@android:drawable/stat_sys_download" />
+
 </android.support.constraint.ConstraintLayout>

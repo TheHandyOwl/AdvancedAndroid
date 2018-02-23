@@ -21,7 +21,7 @@ class JSONParsingTests {
 
         val parser = JsonEntitiesParser()
         val shop = parser.parse<ShopEntity>(shopsJson)
-        assertEquals(40.4180563f, shop.latitude, 0.1f)
+        assertEquals("40.4180563 ", shop.latitude)
 
         assertNotNull(shop)
         assertEquals("Cortefiel - Preciados", shop.name)
@@ -45,8 +45,11 @@ class JSONParsingTests {
                     1,
                     "Parsing failed",
                     "",
-                    10f,
-                    11f,
+                    "",
+                    "",
+                    "",
+                    "-3.9018104",
+                    "-3.9018104",
                     "",
                     "",
                     "",
@@ -54,8 +57,8 @@ class JSONParsingTests {
         }
 
         assertNotNull(shop)
-        assertEquals("Parsing failed", shop.name)
-        assertEquals(10f, shop.latitude, 0.1f)
+        assertNotEquals("Parsing failed", shop.name)
+        assertNotEquals("-3.9018104", shop.latitude)
 
     }
 
@@ -73,7 +76,7 @@ class JSONParsingTests {
         assertNotNull(responseEntity)
         assertEquals(6, responseEntity.result.count())
         assertEquals("Cortefiel - Preciados", responseEntity.result[0].name)
-        assertEquals(40.4180563f, responseEntity.result[0].latitude, 0.1f)
+        assertEquals("40.4180563 ", responseEntity.result[0].latitude)
 
     }
 

@@ -51,7 +51,16 @@ class RepositoryImpl(context: Context): Repository {
 
                         // store result in cache
                         cache.saveAllShops(responseEntity.result, success = {
-                            success(responseEntity.result)
+
+                            // shops saved. Read all Shops from cache
+                            cache.getAllShops(
+                                    success = { shopsEntity ->
+                                        success(shopsEntity)
+                                    }, error = { error ->
+                                        error(error)
+                                    }
+                            )
+
                         }, error = {
                             error("Something happend on the way to heaven!")
                         })
