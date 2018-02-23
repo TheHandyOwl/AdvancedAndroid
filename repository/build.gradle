@@ -18,10 +18,12 @@ android {
         debug {
             buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
             buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madrid-shops.com/json_new/getShops.php\""
+            buildConfigField "String", "MADRID_SHOPS_TESTS_DB_NAME", '"MadridShopsTests.sqlite"'
         }
         release {
             buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
             buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madridshops.heroku.com/\""
+            buildConfigField "String", "MADRID_SHOPS_TESTS_DB_NAME", '"MadridShopsTests.sqlite"'
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

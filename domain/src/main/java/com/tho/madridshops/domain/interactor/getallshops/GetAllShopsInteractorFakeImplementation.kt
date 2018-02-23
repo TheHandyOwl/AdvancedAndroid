@@ -42,7 +42,19 @@ class GetAllShopsInteractorFakeImplementation: GetAllShopsInteractor {
         var list = ArrayList<Shop>()
 
         for (i in 0..100) {
-            val shop = Shop(i, "Shop " + i, "Address " + i)
+            val shop = Shop(i,
+                    "Shop " + i,
+                    "https://" + i + ".com/" + i + ".jpg",
+                    "https://" + i + ".com/logo-" + i + ".jpg",
+                    "Address" + i ,
+                    "https://" + i + ".com/",
+                    "40.4302291".toFloat(),
+                    "-3.6854465999999775".toFloat(),
+                    "Description of " + i,
+                    "Descripción de " + i,
+                    "Monday to Saturday: 10:00-20:00",
+                    "Lunes a sábado: 10:00-20:00"
+            )
             list.add(shop)
         }
 

@@ -4,7 +4,14 @@ package com.tho.madridshops.domain.model
  * Shop: represents one Shop
  */
 
-data class Shop (val id: Int, val name: String, val address: String) {
+data class Shop (
+        val id: Int, val name: String,
+        val image_url: String, val logo_image_url: String,
+        val address: String, val url : String,
+        val latitude: Float, val longitude: Float,
+        val description_en: String, val description_es: String,
+        val opening_hours_en: String, val opening_hours_es: String
+    ) {
     // init is a block of code executed with the constructor
     init {
         Shops(ArrayList<Shop>())

@@ -2,7 +2,14 @@
     <string name="app_name">MadridShops</string>
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_getting_all_shops">Error getting all shops</string>
+    <string name="shop_name">Shop\'s name</string>
+    <string name="shop_description">Shop\'s description</string>
+    <string name="shop_openning_hours">Shop\'s openning hours</string>
+    <string name="shop_image_description">Shop\'s image description</string>
+    <string name="shop_s_logo">Shop\'s logo</string>
+    <string name="shop_s_name">Shop\'s name</string>
+    <string name="shops_s_address">Shop\'s address</string>
+
 </resources>
