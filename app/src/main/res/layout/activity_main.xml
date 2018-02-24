@@ -6,7 +6,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tho.madridshops.activity.MainActivity">
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.tho.madridshops.activity.MadridShopsApp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="208dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/logo_s_app"
+        app:layout_constraintBottom_toTopOf="@+id/main_activity_activities_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/mainlogo" />
+
+    <ProgressBar
+        android:id="@+id/activitiesProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/main_activity_activities_button"
+        app:layout_constraintEnd_toEndOf="@+id/main_activity_activities_button"
+        app:layout_constraintStart_toStartOf="@+id/main_activity_activities_button"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_activities_button"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/main_activity_activities_button"
@@ -20,6 +50,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75" />
+
+    <ProgressBar
+        android:id="@+id/shopsProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/main_activity_shops_button"
+        app:layout_constraintEnd_toEndOf="@+id/main_activity_shops_button"
+        app:layout_constraintStart_toStartOf="@+id/main_activity_shops_button"
+        app:layout_constraintTop_toTopOf="@+id/main_activity_shops_button"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/main_activity_shops_button"

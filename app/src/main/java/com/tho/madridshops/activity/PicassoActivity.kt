@@ -2,6 +2,7 @@ package com.tho.madridshops.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import com.tho.madridshops.R
 import kotlinx.android.synthetic.main.activity_picasso.*
@@ -11,6 +12,9 @@ class PicassoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picasso)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle("Picasso")
 
         // Options to display images
         Picasso.with(this).setIndicatorsEnabled(true)
@@ -31,4 +35,16 @@ class PicassoActivity : AppCompatActivity() {
                 .placeholder(android.R.drawable.ic_input_add)
                 .into(img3)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Sabemos que se ha pulsado la flecha de back
+                finish()
+                return true
+            }
+            else -> return true
+        }
+    }
+
 }

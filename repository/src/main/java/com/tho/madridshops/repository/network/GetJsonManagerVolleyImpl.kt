@@ -34,8 +34,9 @@ internal class GetJsonManagerVolleyImpl(context: Context): GetJsonManager {
                     Log.d("JSON", it)
                     success.successCompletion(it)
                 }, Response.ErrorListener {
-            error.errorCompletion(it.localizedMessage)
-        })
+                    error.errorCompletion(it.localizedMessage)
+                }
+        )
 
         // add request to queue
         requestQueue().add(request)

@@ -2,12 +2,13 @@ package com.tho.madridshops.activity
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintSet
+import android.support.v7.app.AppCompatActivity
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.util.Log
+import android.view.MenuItem
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.Toast
 import com.squareup.picasso.Picasso
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 
 class ShopDetailActivity : AppCompatActivity() {
-
 
     companion object {
 
@@ -43,6 +43,9 @@ class ShopDetailActivity : AppCompatActivity() {
 
         Log.d("SHOPID:", shop.name)
 
+        supportActionBar?.title = shop.name
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         setupShopDetail(shop)
 
         // Show / hide map
@@ -50,6 +53,17 @@ class ShopDetailActivity : AppCompatActivity() {
             showOrHideComponents()
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Sabemos que se ha pulsado la flecha de back
+                finish()
+                return true
+            }
+            else -> return true
+        }
     }
 
     private fun setupShopDetail(shop: Shop) {

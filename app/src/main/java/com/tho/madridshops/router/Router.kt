@@ -8,10 +8,10 @@ import com.tho.madridshops.domain.model.Shop
 
 class Router {
     // Main Activity
-    fun navigateFromMainActivityToActivitiesActivity(main: MainActivity) {
+    fun navigateFromMainActivityToActivitiesActivity(main: MadridShopsApp) {
         main.startActivity(Intent(main, ActivitiesMainActivity::class.java))
     }
-    fun navigateFromMainActivityToShopsActivity(main: MainActivity) {
+    fun navigateFromMainActivityToShopsActivity(main: MadridShopsApp) {
         main.startActivity(Intent(main, ShopsMainActivity::class.java))
     }
 
