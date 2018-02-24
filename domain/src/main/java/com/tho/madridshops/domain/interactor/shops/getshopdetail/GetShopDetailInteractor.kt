@@ -1,4 +1,4 @@
-package com.tho.madridshops.domain.interactor.getshopdetail
+package com.tho.madridshops.domain.interactor.shops.getshopdetail
 
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion

@@ -14,14 +14,13 @@ import com.squareup.picasso.Picasso
 import com.tho.madridshops.R
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
-import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractor
-import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorFakeImpl
-import com.tho.madridshops.domain.interactor.getshopdetail.GetShopDetailInteractorImpl
+import com.tho.madridshops.domain.interactor.shops.getshopdetail.GetShopDetailInteractor
+import com.tho.madridshops.domain.interactor.shops.getshopdetail.GetShopDetailInteractorImpl
 import com.tho.madridshops.domain.model.Shop
 import kotlinx.android.synthetic.main.activity_detail.*
 
 
-class DetailActivity : AppCompatActivity() {
+class ShopDetailActivity : AppCompatActivity() {
 
 
     companion object {
@@ -29,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
         val EXTRA_SHOP = "EXTRA_SHOP"
 
         fun intent(context: Context, shop: Shop): Intent {
-            val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, ShopDetailActivity::class.java)
             intent.putExtra(EXTRA_SHOP, shop)
             return intent
         }

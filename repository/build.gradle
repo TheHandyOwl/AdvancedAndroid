@@ -16,14 +16,22 @@ android {
 
     buildTypes {
         debug {
+            // Servers
             buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
-            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madrid-shops.com/json_new/getShops.php\""
             buildConfigField "String", "MADRID_SHOPS_TESTS_DB_NAME", '"MadridShopsTests.sqlite"'
+
+            // Files
+            buildConfigField "String", "MADRID_ACTIVITIES_SERVER_URL", "\"https://madrid-shops.com/json_new/getActivities.php\""
+            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madrid-shops.com/json_new/getShops.php\""
         }
         release {
+            // Servers
             buildConfigField "String", "MADRID_SHOPS_CACHE_DB_NAME", '"MadridShopsCache.sqlite"'
-            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madridshops.heroku.com/\""
             buildConfigField "String", "MADRID_SHOPS_TESTS_DB_NAME", '"MadridShopsTests.sqlite"'
+
+            //Files
+            buildConfigField "String", "MADRID_ACTIVITIES_SERVER_URL", "\"http://madridshops.heroku.com/\""
+            buildConfigField "String", "MADRID_SHOPS_SERVER_URL", "\"http://madridshops.heroku.com/\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

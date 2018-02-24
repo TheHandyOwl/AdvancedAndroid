@@ -1,4 +1,4 @@
-package com.tho.madridshops.domain.interactor.getshopdetail
+package com.tho.madridshops.domain.interactor.shops.getshopdetail
 
 import android.content.Context
 import com.tho.madridshops.domain.interactor.ErrorCompletion

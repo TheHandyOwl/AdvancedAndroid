@@ -3,10 +3,8 @@ package com.tho.madridshops
 import android.support.multidex.MultiDexApplication
 import android.util.Log
 import com.tho.madridshops.domain.interactor.ErrorCompletion
-import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractorFakeImplementation
 import com.tho.madridshops.domain.interactor.SuccessCompletion
-import com.tho.madridshops.domain.interactor.deleteallshops.DeleteAllShopsImpl
-import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImpl
+import com.tho.madridshops.domain.interactor.shops.getallshops.GetAllShopsInteractorImpl
 import com.tho.madridshops.domain.model.Shops
 
 

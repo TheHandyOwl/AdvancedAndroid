@@ -1,4 +1,4 @@
-package com.tho.madridshops.domain.interactor.deleteallshops
+package com.tho.madridshops.domain.interactor.shops.deleteallshops
 
 import android.content.Context
 import com.tho.madridshops.domain.interactor.CodeClosure

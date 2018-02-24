@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.tho.madridshops.activity.DetailActivity">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/detail_view_description"

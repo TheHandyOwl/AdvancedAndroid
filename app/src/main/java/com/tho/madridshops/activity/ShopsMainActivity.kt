@@ -21,26 +21,26 @@ import com.tho.madridshops.R
 import com.tho.madridshops.adapter.MarkerAdapter
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
-import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractor
-import com.tho.madridshops.domain.interactor.getallshops.GetAllShopsInteractorImpl
+import com.tho.madridshops.domain.interactor.shops.getallshops.GetAllShopsInteractor
+import com.tho.madridshops.domain.interactor.shops.getallshops.GetAllShopsInteractorImpl
 import com.tho.madridshops.domain.model.Shop
 import com.tho.madridshops.domain.model.Shops
-import com.tho.madridshops.fragment.ListFragment
+import com.tho.madridshops.fragment.ShopsListFragment
 import com.tho.madridshops.router.Router
 
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_main_shops.*
+import kotlinx.android.synthetic.main.content_main_shops.*
 
-class MainActivity : AppCompatActivity(), ListFragment.OnShowShopDetail {
+class ShopsMainActivity : AppCompatActivity(), ShopsListFragment.OnShowShopDetail {
 
-    var listFragment: ListFragment? = null
+    var listFragment: ShopsListFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_shops)
         setSupportActionBar(toolbar)
 
-        Log.d("App", "MainActivity.onCreate()")
+        Log.d("App", "ShopsMainActivity.onCreate()")
 
         // val fm: FragmentManager = supportFragmentManager.getFragment()
 
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity(), ListFragment.OnShowShopDetail {
 
     private fun setupList() {
         listFragment = supportFragmentManager.findFragmentById(
-                R.id.activity_main_list_fragment) as ListFragment
+                R.id.activity_main_list_fragment) as ShopsListFragment
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity(), ListFragment.OnShowShopDetail {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        Router().navigateFromMainActivityToPicassoActivity(this)
+        Router().navigateFromShopsMainActivityToPicassoActivity(this)
         return true
 
         /*
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity(), ListFragment.OnShowShopDetail {
     }
 
     private fun initializeList(shops: Shops) {
-        listFragment = activity_main_list_fragment as ListFragment
+        listFragment = activity_main_list_fragment as ShopsListFragment
         listFragment?.setShops(shops)
     }
 
