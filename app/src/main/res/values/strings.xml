@@ -13,4 +13,6 @@
     <string name="shops_s_address">Shop\'s address</string>
     <string name="shop_image_map">Shop\'s image map</string>
     <string name="show_hide_map">Show / hide map</string>
+    <string name="shops">Shops</string>
+    <string name="activities">Activities</string>
 </resources>

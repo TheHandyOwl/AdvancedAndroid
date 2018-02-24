@@ -7,6 +7,14 @@ import com.tho.madridshops.domain.model.Activity
 import com.tho.madridshops.domain.model.Shop
 
 class Router {
+    // Main Activity
+    fun navigateFromMainActivityToActivitiesActivity(main: MainActivity) {
+        main.startActivity(Intent(main, ActivitiesMainActivity::class.java))
+    }
+    fun navigateFromMainActivityToShopsActivity(main: MainActivity) {
+        main.startActivity(Intent(main, ShopsMainActivity::class.java))
+    }
+
     // Picasso
     fun navigateFromShopsMainActivityToPicassoActivity(main: ShopsMainActivity) {
         main.startActivity(Intent(main, PicassoActivity::class.java))
