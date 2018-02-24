@@ -25,7 +25,7 @@ The screen shows a map and a recyclerView
 	- Detail view has a hidden map. At the bottom of the screen you can push to open or hide the image's map
 
 ## Downloads
-The download checks if cache exists (DB is empty). If there is no cache, it downloads from network, then save date to DB, then get date from DB (with true item ID), and finally go back with that list
+The download checks if cache exists (DB is empty). If there is no cache, it downloads from network, then save data to DB, then get data from DB (with true DatabaseID), and finally go back with that list
 
 ## Toolbars
 - Main View has no toolbar
