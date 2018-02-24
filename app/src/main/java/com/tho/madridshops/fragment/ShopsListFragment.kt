@@ -12,17 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.tho.madridshops.R
-import com.tho.madridshops.adapter.ListAdapter
+import com.tho.madridshops.adapter.ShopListAdapter
 import com.tho.madridshops.domain.model.Shop
 import com.tho.madridshops.domain.model.Shops
 
 
-class ListFragment : Fragment() {
+class ShopsListFragment : Fragment() {
 
 
     private lateinit var root: View
     private lateinit var shopRecyclerView: RecyclerView
-    private var adapter: ListAdapter? = null
+    private var adapter: ShopListAdapter? = null
     private var onShowShopDetail: OnShowShopDetail? = null
 
     private var shops: Shops? = null
@@ -31,13 +31,13 @@ class ListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         inflater?.let {
-            root = it.inflate(R.layout.fragment_list, container, false)
+            root = it.inflate(R.layout.fragment_shops_list, container, false)
 
             shopRecyclerView = root.findViewById(R.id.recycler_view) as RecyclerView
             shopRecyclerView.layoutManager = GridLayoutManager(activity, 1)
             shopRecyclerView.itemAnimator = DefaultItemAnimator()
 
-            adapter = ListAdapter(shops)
+            adapter = ShopListAdapter(shops)
             shopRecyclerView.adapter = adapter
         }
 
@@ -45,7 +45,7 @@ class ListFragment : Fragment() {
 
     }
 
-    private fun setListenerToAdapter(adapter: ListAdapter) {
+    private fun setListenerToAdapter(adapter: ShopListAdapter) {
         adapter.onClickListener = View.OnClickListener { v: View? ->
             val position = shopRecyclerView.getChildAdapterPosition(v)
             val shop = shops?.get(position)
@@ -58,7 +58,7 @@ class ListFragment : Fragment() {
     fun setShops(shops: Shops) {
         this.shops = shops
 
-        adapter = ListAdapter(shops)
+        adapter = ShopListAdapter(shops)
         shopRecyclerView.adapter = adapter
 
         setListenerToAdapter(adapter!!)

@@ -1,8 +1,8 @@
-package com.tho.madridshops.domain.interactor.getallshops
+package com.tho.madridshops.domain.interactor.shops.getallshops
 
 import com.tho.madridshops.domain.interactor.ErrorClosure
 import com.tho.madridshops.domain.interactor.ErrorCompletion
-import com.tho.madridshops.domain.interactor.SuccessClosure
+import com.tho.madridshops.domain.interactor.ShopsSuccessClosure
 import com.tho.madridshops.domain.interactor.SuccessCompletion
 import com.tho.madridshops.domain.model.Shop
 import com.tho.madridshops.domain.model.Shops
@@ -24,7 +24,7 @@ class GetAllShopsInteractorFakeImplementation: GetAllShopsInteractor {
         }
     }
 
-    fun execute(success: SuccessClosure, error: ErrorClosure) {
+    fun execute(success: ShopsSuccessClosure, error: ErrorClosure) {
         var allOk = true
 
         // connect to the repository

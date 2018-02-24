@@ -1,27 +1,28 @@
-package com.tho.madridshops.domain.interactor.getshopdetail
+package com.tho.madridshops.domain.interactor.shops.getshopdetail
 
 import com.tho.madridshops.domain.interactor.ErrorCompletion
 import com.tho.madridshops.domain.interactor.SuccessCompletion
-import com.tho.madridshops.domain.model.Shop
+import com.tho.madridshops.domain.interactor.activities.getactivitydetail.GetActivityDetailInteractor
+import com.tho.madridshops.domain.model.Activity
 
-class GetShopDetailInteractorFakeImpl : GetShopDetailInteractor {
-    override fun execute(shopId: Long, success: SuccessCompletion<Shop>, error: ErrorCompletion) {
+class GetActivityDetailInteractorFakeImpl : GetActivityDetailInteractor {
+    override fun execute(shopId: Long, success: SuccessCompletion<Activity>, error: ErrorCompletion) {
         //var allOk = false
         var allOk = true
 
         // connect to the repository
 
         if (allOk) {
-            val shop = createFakeShopDetail()
+            val shop = createFakeActivityDetail()
             success.successCompletion(shop)
         } else {
             error.errorCompletion("Error while accesing the Repository")
         }
     }
 
-    fun createFakeShopDetail(): Shop {
-        val shop = Shop(
-                33,
+    fun createFakeActivityDetail(): Activity {
+        val shop = Activity(
+                 33,
                 "HERMÉS",
                 "https://madrid-shops.com/media/shops/hermes-small.jpg",
                 "https://madrid-shops.com/media/shops/logo-hermes-200.jpg",
@@ -33,7 +34,7 @@ class GetShopDetailInteractorFakeImpl : GetShopDetailInteractor {
                 "La firma Hermès va un paso más allá del lujo. Desde 1837, el imperio francés ha rubricado los más exquisitos y delicados complementos, elaborados por artesanos que necesitan de hasta cuatro años de formación para captar la esencia que durante cinco generaciones han transmitido a sus artículos: pañuelos, corbatas, productos de marroquinería, perfumes, joyas e incluso su línea para el hogar no tienen competidor posible. Todo ello se puede admirar y adquirir en su renovada tienda de la calle Ortega y Gasset.\r\nLa dinastía Hermès ha convertido el mundo de los accesorios en auténticos objetos de culto, que llegan a tener detrás incluso una lista de espera de hasta dos años para poder adquirirlos. Así ocurre con el bolso Grace, aquel que inmortalizó Grace Kelly en la portada de la revista Life, o el modelo Birkin, en honor de la cantante y actriz Jane Birkin. \r\nPero las líneas de la marca francesa también incluyen propuestas prêt à porter masculinas y femeninas; mientras que detrás de las primeras se encuentra desde el principio los diseños de Véronique Nichanian y Jean-Louis, a la mujer Hermès la viste en la actualidad el rompedor Jean Paul Gaultier.",
                 "Monday to Saturday: 10: 30-20: 30",
                 "lun-sab 10:30-20:30"
-        )
+                )
         return shop
     }
 

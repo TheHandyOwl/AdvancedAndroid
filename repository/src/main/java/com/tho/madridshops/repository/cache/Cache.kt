@@ -1,8 +1,23 @@
 package com.tho.madridshops.repository.cache
 
+import com.tho.madridshops.repository.model.ActivityEntity
 import com.tho.madridshops.repository.model.ShopEntity
 
 internal interface Cache {
+
+    // Activities
+    fun getAllActivities(success: (activities: List<ActivityEntity>) -> Unit,
+                         error: (errorMessage: String) -> Unit)
+    fun getActivity(activityId: Long, success: (activity: ActivityEntity) -> Unit,
+                    error: (errorMessage: String) -> Unit)
+    fun saveAllActivities(shops: List<ActivityEntity>,
+                          success: () -> Unit,
+                          error: (errorMessage: String) -> Unit)
+
+    fun deleteAllActivities(success: () -> Unit,
+                            error: (errorMessage: String) -> Unit)
+
+    // Shops
     fun getAllShops(success: (shops: List<ShopEntity>) -> Unit,
                     error: (errorMessage: String) -> Unit)
     fun getShop(shopId: Long, success: (shop: ShopEntity) -> Unit,
@@ -13,4 +28,5 @@ internal interface Cache {
 
     fun deleteAllShops(success: () -> Unit,
                        error: (errorMessage: String) -> Unit)
+
 }
