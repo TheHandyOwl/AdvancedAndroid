@@ -23,10 +23,11 @@ The screen shows a map and a recyclerView
 	- The intent information is showed first, but there is a task in background to check the information in the DB. When this information is available, the items are refreshed with new info.
 - Hidden  Map
 	- Detail view has a hidden map. At the bottom of the screen you can push to open or hide the image's map
+
+## Downloads
+The download checks if cache exists (DB is empty). If there is no cache, it downloads from network, then save date to DB, then get date from DB (with true item ID), and finally go back with that list
+
 ## Toolbars
 - Main View has no toolbar
 - Main activities have a custom toolbar to test Picasa, and Home button
 - Detail activities only Home button
-
-## Downloads
-The download check if cache exists (DB is empty). If there is no cache, it downloads form network, then save date to DB, then get date from DB (with true item ID), and finally go back with that list
