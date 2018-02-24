@@ -41,22 +41,28 @@
 
         <activity
             android:name=".activity.ActivitiesMainActivity"
+            android:label="@string/activities"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.ActivityDetailActivity" />
+        <activity
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityDetailActivity" />
         <activity android:name=".activity.PicassoActivity" />
         <activity
             android:name=".activity.ShopsMainActivity"
-            android:label="@string/app_name"
+            android:label="@string/shops"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity android:name=".activity.ShopDetailActivity" />
-
     </application>
 
 </manifest>
