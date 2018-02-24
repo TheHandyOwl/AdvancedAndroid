@@ -3,6 +3,7 @@ package com.tho.madridshops.activity
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -27,8 +28,9 @@ import com.tho.madridshops.domain.model.Activity
 import com.tho.madridshops.domain.model.Activities
 import com.tho.madridshops.fragment.ActivitiesListFragment
 import com.tho.madridshops.router.Router
-import kotlinx.android.synthetic.main.activity_main_shops.*
+
 import kotlinx.android.synthetic.main.content_main_activities.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 class ActivitiesMainActivity : AppCompatActivity(),
@@ -42,6 +44,8 @@ class ActivitiesMainActivity : AppCompatActivity(),
         setSupportActionBar(toolbar)
 
         Log.d("App", "ActivityMainActivity.onCreate()")
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupMap()
 
@@ -147,19 +151,19 @@ class ActivitiesMainActivity : AppCompatActivity(),
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        Router().navigateFromActivitiesMainActivityToPicassoActivity(this)
-        return true
-
-        /*
         return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            android.R.id.home -> {
+                // Sabemos que se ha pulsado la flecha de back
+                finish()
+                return true
+            }
+            R.id.action_settings -> {
+                Router().navigateFromActivitiesMainActivityToPicassoActivity(this)
+                return true
+            }
+            //else -> return super.onOptionsItemSelected(item)
+            else -> return true
         }
-        */
     }
 
     private fun initializeList(activities: Activities) {

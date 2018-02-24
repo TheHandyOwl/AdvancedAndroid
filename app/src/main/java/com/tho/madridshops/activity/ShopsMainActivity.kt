@@ -28,8 +28,9 @@ import com.tho.madridshops.domain.model.Shops
 import com.tho.madridshops.fragment.ShopsListFragment
 import com.tho.madridshops.router.Router
 
-import kotlinx.android.synthetic.main.activity_main_shops.*
 import kotlinx.android.synthetic.main.content_main_shops.*
+import kotlinx.android.synthetic.main.toolbar.*
+
 
 class ShopsMainActivity : AppCompatActivity(), ShopsListFragment.OnShowShopDetail {
 
@@ -42,14 +43,7 @@ class ShopsMainActivity : AppCompatActivity(), ShopsListFragment.OnShowShopDetai
 
         Log.d("App", "ShopsMainActivity.onCreate()")
 
-        // val fm: FragmentManager = supportFragmentManager.getFragment()
-
-        /*
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-        */
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupMap()
 
@@ -144,11 +138,6 @@ class ShopsMainActivity : AppCompatActivity(), ShopsListFragment.OnShowShopDetai
         }
     }
 
-    private fun setupList() {
-        listFragment = supportFragmentManager.findFragmentById(
-                R.id.activity_main_list_fragment) as ShopsListFragment
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -156,21 +145,19 @@ class ShopsMainActivity : AppCompatActivity(), ShopsListFragment.OnShowShopDetai
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        Router().navigateFromShopsMainActivityToPicassoActivity(this)
-        return true
-
-        /*
-        startActivity(Intent(this, PicassoActivity::class.java))
-
         return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            android.R.id.home -> {
+                // Sabemos que se ha pulsado la flecha de back
+                finish()
+                return true
+            }
+            R.id.action_settings -> {
+                Router().navigateFromShopsMainActivityToPicassoActivity(this)
+                return true
+            }
+            //else -> return super.onOptionsItemSelected(item)
+            else -> return true
         }
-        */
-
     }
 
     private fun initializeList(shops: Shops) {
