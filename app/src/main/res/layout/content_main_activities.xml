@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.tho.madridshops.activity.ActivitiesMainActivity"
+    tools:showIn="@layout/activity_main_shops"
+    android:orientation="vertical"
+    >
+
+    <fragment
+        android:id="@+id/activity_main_activities_map_fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_weight="1"
+        />
+
+    <fragment
+        android:id="@+id/activity_main_activities_list_fragment"
+        android:name="com.tho.madridshops.fragment.ActivitiesListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>
