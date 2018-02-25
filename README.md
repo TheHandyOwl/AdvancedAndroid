@@ -3,6 +3,7 @@
 This application shows information about shops and activities on a map or a list.
 Information is downloaded from network and saved to a DB.
 You also have a detail view with custom information.
+Main branch is 'master'.
 
 ## Main View
 - Main View downloads activities and shops
