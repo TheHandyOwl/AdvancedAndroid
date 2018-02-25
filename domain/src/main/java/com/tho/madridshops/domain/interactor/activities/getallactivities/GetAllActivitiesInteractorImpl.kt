@@ -20,7 +20,7 @@ class GetAllActivitiesInteractorImpl(context: Context): GetAllActivitiesInteract
             val  activities: Activities = entityMapper(it)
             success.successCompletion(activities)
         }, error = {
-            error(it)
+            error.errorCompletion(it)
         })
     }
 

@@ -34,6 +34,7 @@ class MarkerAdapter(val context: Context) : GoogleMap.InfoWindowAdapter {
                         .with(context)
                         .load(shop.logo_image_url)
                         .placeholder(android.R.drawable.stat_sys_download)
+                        .error(android.R.drawable.ic_menu_report_image)
                         .into(shopImage, MarkerCallback(m, shopUrl, shopImage, context))
             }
             is Activity -> {
@@ -48,6 +49,7 @@ class MarkerAdapter(val context: Context) : GoogleMap.InfoWindowAdapter {
                         .with(context)
                         .load(activity.logo_image_url)
                         .placeholder(android.R.drawable.stat_sys_download)
+                        .error(android.R.drawable.ic_menu_report_image)
                         .into(shopImage, MarkerCallback(m, shopUrl, shopImage, context))
             }
         }
@@ -72,6 +74,7 @@ class MarkerCallback(val marker: Marker,
                     .with(context)
                     .load(url)
                     .placeholder(android.R.drawable.stat_sys_download)
+                    .error(android.R.drawable.ic_menu_report_image)
                     .into(imageView)
 
             marker.showInfoWindow()

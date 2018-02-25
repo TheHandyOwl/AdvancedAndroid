@@ -103,12 +103,14 @@ class ShopDetailActivity : AppCompatActivity() {
         Picasso.with(this)
                 .load(shop.image_url)
                 .placeholder(android.R.drawable.stat_sys_download)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(detail_view_image)
         // Hidden map
         val url = "https://maps.googleapis.com/maps/api/staticmap?center=4${shop.latitude},${shop.longitude}&zoom=17&size=320x220&scale=2&markers=%7Ccolor:0x9C7B14%7C${shop.latitude},${shop.longitude}"
         Picasso.with(this)
                 .load(url)
                 .placeholder(android.R.drawable.stat_sys_download)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(detail_view_map)
     }
 

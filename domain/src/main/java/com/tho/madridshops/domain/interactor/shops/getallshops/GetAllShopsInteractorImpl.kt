@@ -20,7 +20,7 @@ class GetAllShopsInteractorImpl(context: Context): GetAllShopsInteractor {
             val  shops: Shops = entityMapper(it)
             success.successCompletion(shops)
         }, error = {
-            error(it)
+            error.errorCompletion(it)
         })
     }
 

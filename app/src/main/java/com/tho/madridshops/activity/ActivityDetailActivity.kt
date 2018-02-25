@@ -101,6 +101,7 @@ class ActivityDetailActivity : AppCompatActivity() {
         Picasso.with(this)
                 .load(activity.image_url)
                 .placeholder(android.R.drawable.stat_sys_download)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(detail_view_image)
 
         // Hidden map
@@ -108,6 +109,7 @@ class ActivityDetailActivity : AppCompatActivity() {
         Picasso.with(this)
                 .load(url)
                 .placeholder(android.R.drawable.stat_sys_download)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(detail_view_map)
     }
 
