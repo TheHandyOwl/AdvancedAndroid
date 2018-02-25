@@ -27,13 +27,13 @@ The screen shows a map and a recyclerView
 ## Downloads
 The download checks if cache exists (DB is empty). If there is no cache, it downloads from network, then save data to DB, then get data from DB (with true DatabaseID), and finally go back with that list
 
-## Internet status and data update
-- When the app starts, try to get data
+## Internet status and data update
+- When the app starts, should get data from DB
 	- If data exists in the DB, the buttons are clickable
 	- If data doesn't exists, try to get date from network
-		- Network status is checked, and return data mapped or error
+		- Network status is checked, data is mapped and returned (or error)
 	- If there is no data, you can't tap the buttons
-- You can try to update again data from network if the table is empty, or data from DB is showed again
+- There is a button to delete all tables in DB, and should update data from network again
 
 ## Toolbars
 - Main View has no toolbar
