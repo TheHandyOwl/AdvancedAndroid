@@ -46,6 +46,7 @@ class ActivityListAdapter(val activityList: Activities?) :
                     .with(itemView.context)
                     .load(activity.logo_image_url)
                     .placeholder(android.R.drawable.stat_sys_download)
+                    .error(android.R.drawable.ic_menu_report_image)
                     .into(itemView.list_image)
         }
 

@@ -68,7 +68,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/detail_view_opening_hours"
         app:layout_constraintTop_toTopOf="@+id/detail_view_guideline2"
-        app:srcCompat="@android:drawable/stat_sys_download" />
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
 
     <android.support.constraint.Guideline
         android:id="@+id/detail_view_guideline3"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="@+id/detail_view_image"
         app:layout_constraintStart_toStartOf="@+id/detail_view_image"
         app:layout_constraintTop_toBottomOf="@+id/detail_view_guideline3"
-        app:srcCompat="@android:drawable/stat_sys_download" />
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
 
     <android.support.constraint.Guideline
         android:id="@+id/detail_view_guideline4"

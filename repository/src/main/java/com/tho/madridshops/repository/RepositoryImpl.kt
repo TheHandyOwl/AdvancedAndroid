@@ -1,9 +1,12 @@
 package com.tho.madridshops.repository
 
 import android.content.Context
+import android.util.Log
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import com.tho.madridshops.repository.cache.Cache
 import com.tho.madridshops.repository.cache.CacheImpl
+import com.tho.madridshops.interactor.internetatatus.InternetStatusInteractorImpl
+import com.tho.madridshops.repository.interactor.internetatatus.InternetStatusInteractor
 import com.tho.madridshops.repository.model.ActivitiesResponseEntity
 import com.tho.madridshops.repository.model.ActivityEntity
 import com.tho.madridshops.repository.model.ShopEntity
@@ -13,7 +16,7 @@ import com.tho.madridshops.repository.network.GetJsonManagerVolleyImpl
 import com.tho.madridshops.repository.network.json.JsonEntitiesParser
 import java.lang.ref.WeakReference
 
-class RepositoryImpl(context: Context): Repository {
+class RepositoryImpl(val context: Context): Repository {
 
     private val weakContext = WeakReference<Context>(context)
     private val cache: Cache = CacheImpl(weakContext.get() !!)
@@ -21,17 +24,16 @@ class RepositoryImpl(context: Context): Repository {
     // Activities
     override fun getAllActivities(success: (activities: List<ActivityEntity>) -> Unit,
                                   error: (errorMessage: String) -> Unit) {
-        // read all Shops from cache
+        // read all Activities from cache
         cache.getAllActivities(
                 success = {
                     // if there's activities in cache --> return item
-
                     success(it)
                 }, error = {
-            // if no activities in cache --> network
-
-            populateCacheWithActivities(success, error)
-        })
+                    // if no activities in cache --> network
+                    populateCacheWithActivities(success, error)
+                }
+        )
 
     }
 
@@ -43,55 +45,67 @@ class RepositoryImpl(context: Context): Repository {
                     // if there's activity in cache --> return item
                     success(it)
                 }, error = {
-            // if no activity in cache --> error
-            error(it.toString())
-        }
+                    // if no activity in cache --> error
+                    error(it.toString())
+                }
         )
     }
 
     private fun populateCacheWithActivities(success: (activities: List<ActivityEntity>) -> Unit,
                                             error: (errorMessage: String) -> Unit) {
-        // perform network request
 
-        val jsonManager: GetJsonManager =
-                GetJsonManagerVolleyImpl(weakContext.get() !!)
-        jsonManager.execute(BuildConfig.MADRID_ACTIVITIES_SERVER_URL,
-                success = object: SuccessCompletion<String> {
-                    override fun successCompletion(e: String) {
-                        val parser = JsonEntitiesParser()
+        // Network available?
+        val internetStatusInteractorImpl: InternetStatusInteractor = InternetStatusInteractorImpl(context)
+        internetStatusInteractorImpl.execute(
+                success = {
+                    Log.d("Inet", "Internet Ok")
+                    // perform network request
 
-                        //val responseEntity = parser.parse<ActivitiesResponseEntity>(e)
-                        var responseEntity: ActivitiesResponseEntity
-                        try {
-                            responseEntity = parser.parse<ActivitiesResponseEntity>(e)
-                        } catch (e: InvalidFormatException) {
-                            responseEntity = ActivitiesResponseEntity(ArrayList())
-                            return
-                        }
+                    val jsonManager: GetJsonManager =
+                            GetJsonManagerVolleyImpl(weakContext.get() !!)
+                    jsonManager.execute(BuildConfig.MADRID_ACTIVITIES_SERVER_URL,
+                            success = object: SuccessCompletion<String> {
+                                override fun successCompletion(e: String) {
+                                    val parser = JsonEntitiesParser()
 
-                        // store result in cache
-                        cache.saveAllActivities(responseEntity.result, success = {
+                                    //val responseEntity = parser.parse<ActivitiesResponseEntity>(e)
+                                    var responseEntity: ActivitiesResponseEntity
+                                    try {
+                                        responseEntity = parser.parse<ActivitiesResponseEntity>(e)
+                                    } catch (e: InvalidFormatException) {
+                                        responseEntity = ActivitiesResponseEntity(ArrayList())
+                                        return
+                                    }
 
-                            // shops saved. Read all Shops from cache
-                            cache.getAllActivities(
-                                    success = { activitiesEntity ->
-                                        success(activitiesEntity)
-                                    }, error = { error ->
-                                error(error)
+                                    // store result in cache
+                                    cache.saveAllActivities(responseEntity.result, success = {
+
+                                        // activities saved. Read all Activities from cache
+                                        cache.getAllActivities(
+                                                success = { activitiesEntity ->
+                                                    success(activitiesEntity)
+                                                }, error = { error ->
+                                                    error(error)
+                                                }
+                                        )
+
+                                    }, error = {
+                                        error("Something happend on the way to heaven!")
+                                    })
+                                }
+
+                            }, error = object: ErrorCompletion {
+                                override fun errorCompletion(errorMessage: String) {
+                                    error("Download error!")
+
+                                }
                             }
-                            )
-
-                        }, error = {
-                            error("Something happend on the way to heaven!")
-                        })
-                    }
-
-                }, error = object: ErrorCompletion {
-            override fun errorCompletion(errorMessage: String) {
-
-            }
-
-        })
+                    )
+                }, error = {
+                    Log.d("Inet", "No internet connection available")
+                    error(it.toString())
+                }
+        )
 
     }
 
@@ -131,47 +145,58 @@ class RepositoryImpl(context: Context): Repository {
 
     private fun populateCache(success: (shops: List<ShopEntity>) -> Unit,
                               error: (errorMessage: String) -> Unit) {
-        // perform network request
 
-        val jsonManager: GetJsonManager =
-                GetJsonManagerVolleyImpl(weakContext.get() !!)
-        jsonManager.execute(BuildConfig.MADRID_SHOPS_SERVER_URL,
-                success = object: SuccessCompletion<String> {
-                    override fun successCompletion(e: String) {
-                        val parser = JsonEntitiesParser()
+        // Network available?
+        val internetStatusInteractorImpl: InternetStatusInteractor = InternetStatusInteractorImpl(context)
+        internetStatusInteractorImpl.execute(
+                success = {
+                    Log.d("Inet", "Internet Ok")
+                    // perform network request
 
-                        //val responseEntity = parser.parse<ShopsResponseEntity>(e)
-                        var responseEntity: ShopsResponseEntity
-                        try {
-                            responseEntity = parser.parse<ShopsResponseEntity>(e)
-                        } catch (e: InvalidFormatException) {
-                            responseEntity = ShopsResponseEntity(ArrayList())
-                            return
-                        }
+                    val jsonManager: GetJsonManager =
+                            GetJsonManagerVolleyImpl(weakContext.get() !!)
+                    jsonManager.execute(BuildConfig.MADRID_SHOPS_SERVER_URL,
+                            success = object: SuccessCompletion<String> {
+                                override fun successCompletion(e: String) {
+                                    val parser = JsonEntitiesParser()
 
-                        // store result in cache
-                        cache.saveAllShops(responseEntity.result, success = {
-
-                            // shops saved. Read all Shops from cache
-                            cache.getAllShops(
-                                    success = { shopsEntity ->
-                                        success(shopsEntity)
-                                    }, error = { error ->
-                                        error(error)
+                                    //val responseEntity = parser.parse<ShopsResponseEntity>(e)
+                                    var responseEntity: ShopsResponseEntity
+                                    try {
+                                        responseEntity = parser.parse<ShopsResponseEntity>(e)
+                                    } catch (e: InvalidFormatException) {
+                                        responseEntity = ShopsResponseEntity(ArrayList())
+                                        return
                                     }
-                            )
 
-                        }, error = {
-                            error("Something happend on the way to heaven!")
-                        })
-                    }
+                                    // store result in cache
+                                    cache.saveAllShops(responseEntity.result, success = {
 
-                }, error = object: ErrorCompletion {
-            override fun errorCompletion(errorMessage: String) {
+                                        // shops saved. Read all Shops from cache
+                                        cache.getAllShops(
+                                                success = { shopsEntity ->
+                                                    success(shopsEntity)
+                                                }, error = { error ->
+                                                    error(error)
+                                                }
+                                        )
 
-            }
+                                    }, error = {
+                                        error("Something happend on the way to heaven!")
+                                    })
+                                }
 
-        })
+                            }, error = object: ErrorCompletion {
+                                override fun errorCompletion(errorMessage: String) {
+                                    error("Download error!")
+                                }
+                            }
+                    )
+                }, error = {
+                    Log.d("Inet", "No internet connection available")
+                    error(it.toString())
+                }
+        )
 
     }
 

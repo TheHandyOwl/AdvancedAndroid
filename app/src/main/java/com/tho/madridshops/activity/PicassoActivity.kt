@@ -16,30 +16,34 @@ class PicassoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle("Picasso")
 
-        // Options to display images
+        // Help -> Options to display images
+        /*
         Picasso.with(this).setIndicatorsEnabled(true)
         Picasso.with(this).isLoggingEnabled = true
+        */
 
         Picasso.with(this)
                 .load("https://i.pinimg.com/originals/50/54/3a/50543adfc79f3209893aa528d35142ba.jpg")
                 .placeholder(android.R.drawable.ic_delete)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(img1)
 
         Picasso.with(this)
                 .load("http://i0.kym-cdn.com/photos/images/newsfeed/000/716/080/f27.jpg")
                 .placeholder(android.R.drawable.ic_btn_speak_now)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(img2)
 
         Picasso.with(this)
                 .load("https://pics.me.me/wtf-is-robert-downey-jrs-dog-doing-what-is-going-14557456.png")
                 .placeholder(android.R.drawable.ic_input_add)
+                .error(android.R.drawable.ic_menu_report_image)
                 .into(img3)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                // Sabemos que se ha pulsado la flecha de back
                 finish()
                 return true
             }

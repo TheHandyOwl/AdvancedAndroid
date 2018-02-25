@@ -16,4 +16,6 @@
     <string name="shops">Shops</string>
     <string name="activities">Activities</string>
     <string name="logo_s_app">Logo\'s App</string>
+    <string name="swipe_or_tap_to_refresh_data">Swipe Screen or Tap here to refresh data</string>
+    <string name="image_test">Image test</string>
 </resources>
