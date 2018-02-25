@@ -1,5 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="default_layout_null">0dp</dimen>
+    <dimen name="default_margin_slim">8dp</dimen>
     <dimen name="border_slim">1dp</dimen>
     <dimen name="detail_view_small_margin">8dp</dimen>
     <dimen name="detail_view_text_size">12sp</dimen>
@@ -7,6 +9,7 @@
     <dimen name="marker_text_size">10sp</dimen>
     <dimen name="marker_text_margin">8dp</dimen>
     <dimen name="marker_small_margin">8dp</dimen>
+    <dimen name="list_margin">1dp</dimen>
     <dimen name="list_image_padding">8dp</dimen>
     <dimen name="list_text_size">12sp</dimen>
     <dimen name="list_text_margin">8dp</dimen>
@@ -14,5 +17,5 @@
     <dimen name="cardview_small_margin">8dp</dimen>
     <dimen name="cardview_corner_radius">8dp</dimen>
     <dimen name="cardview_card_elevation">8dp</dimen>
-    <dimen name="list_margin">1dp</dimen>
+    <dimen name="activity_main_logo_max_width">200dp</dimen>
 </resources>

@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tho.madridshops">
 
+    <!-- Access to internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Google Maps -->
     <permission
         android:name="com.tho.madridshops.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -39,6 +41,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <!-- Activities -->
         <activity
             android:name=".activity.ActivitiesMainActivity"
             android:label="@string/activities"

@@ -1,6 +1,9 @@
 package com.tho.madridshops
 
 internal object ItemConstants {
-    val ACTIVITIES: String = "ACTIVITIES"
-    val SHOPS: String = "SHOPS"
+    val ACTIVITIES = "ACTIVITIES"
+    val DATA = "DATA"
+    val SHOPS = "SHOPS"
+
+    val EVERYTHING = "EVERYTHING"
 }
